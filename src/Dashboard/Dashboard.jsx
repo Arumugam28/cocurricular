@@ -1,5 +1,7 @@
+// Dashboard.jsx
 import React, { useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import FileUploadPage from '../FileUploadPage';
 
 function Dashboard() {
   const scrollRef1 = useRef(null);
@@ -21,16 +23,14 @@ function Dashboard() {
         }
       };
 
-      const interval = setInterval(scrollFunc, 50); 
+      const interval = setInterval(scrollFunc, 50);
 
       return () => {
         clearInterval(interval);
       };
     };
 
-    
     const clearScroll1 = scroll(container1);
-  
     const clearScroll2 = scroll(container2);
 
     return () => {
@@ -46,16 +46,22 @@ function Dashboard() {
           <img src="/ramcologo.jpg" alt="" className='h-9' />
           <span className='font-semibold mt-1 ml-2 text-xl'>RIT</span>
         </a>
-        <h1 className='font-semibold mt-1 lg:ml-[490px] text-xl   md:ml-[550px]'>Co-Curricular</h1>
-       <button className='mt-1 p-1 rounded-lg bg-slate-400 font-bold px-2 border  lg:ml-[450px] md:ml-[300px] '> <Link to='/Login'>login</Link></button>
-        <Link to='/Signup'><button className='mt-1 p-1 rounded-lg text-white bg-violet-950 ml-[10px]  '>Sign Up</button></Link>
+        <h1 className='font-semibold mt-1 lg:ml-[490px] text-xl md:ml-[550px]'>Co-Curricular</h1>
+        <button className='mt-1 p-1 rounded-lg bg-slate-400 font-bold px-2 border lg:ml-[450px] md:ml-[300px] '>
+          <Link to='/Login'>login</Link>
+        </button>
+        <Link to='/Signup'>
+          <button className='mt-1 p-1 rounded-lg text-white bg-violet-950 ml-[10px]  '>Sign Up</button>
+        </Link>
+        <Link to='/file-upload'>
+          <button className='mt-1 p-1 rounded-lg text-white bg-violet-950 ml-[10px]  '>File Upload</button>
+        </Link>
       </nav>
 
       <div className='flex mt-7'>
         <div className='w-1/2 '>
           <span className='flex justify-center font-serif font-extralight'>Upcoming Events</span>
           <div className='border shadow-lg shadow-black/25 rounded-lg p-5   h-[330px] m-4 overflow-auto scrollbar-hide' ref={scrollRef1}>
-           
             <div className='p-5 border border-purple-400 h-[250px]'>
               <span>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur itaque atque esse adipisci,
@@ -89,7 +95,6 @@ function Dashboard() {
         <div className='w-1/2'>
           <span className='flex justify-center font-serif font-extralight'>Events Reports</span>
           <div className='border shadow-inner shadow-black/25 rounded-lg p-5 h-[430px] m-3 overflow-auto scrollbar-hide' ref={scrollRef2}>
-           
             <div className='p-5 border border-purple-400 h-[250px]'>
               <span>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur itaque atque esse adipisci,
@@ -117,6 +122,9 @@ function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Define a route for the FileUploadPage component */}
+      
     </div>
   );
 }
